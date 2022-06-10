@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600&display=swap');
+
+:root {
+    --gray: #6B7280;
+	--dark: #1e2125;
+	--darker: rgb(24, 22, 22);
+	--pink: #EC4899;
+	--purple: #8B5CF6;
+	--lightgreen: #64e5cd;
+	--perfectblue: rgb(81, 137, 206);
+    --red: red;
+    --white: #fff;
+    --green: rgb(72, 255, 0);
+    --darkpurple: rgb(145, 22, 132);
+}
+
+* {
+	margin: 0;
+	font-family: 'Noto Serif TC', "Fira sans", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
+    color: var(--white);
+    background-color: var(--dark);
+}
+
+header {
+    padding: 2rem;
+    max-width: 1000px;
+    width: auto;
+    margin: 0 auto;
+}
+
+#title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--gray);
+    margin: 0 auto;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    /* border: solid 3px var(--red); */
+}
+
+#new-order-form {
+    display: flex;
+    margin-bottom: 2rem;
+    /* border: solid 3px var(--red); */
+}
+
+#new-order-name {
+    background-color: var(--darker);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    color: var(--white);
+}
+
+#new-order-name::placeholder {
+    color: var(--gray);
+}
+
+#new-order-price {
+    background-color: var(--darker);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    color: var(--white);
+}
+
+#new-order-price::placeholder {
+    color: var(--gray);
+}
+
+
+#new-order-submit {
+    font-size: 1.5rem;
+    background-image: linear-gradient(to right, var(--lightgreen), var(--purple));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+#new-order-submit:hover {
+    opacity: 0.6;
+}
+
+#new-order-submit:active {
+    opacity: 0.4;
+}
+
+main {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#list-title {
+    display: flex;
+    justify-content: space-between;
+    max-width: 650px;
+    color: var(--gray);
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.7rem;
+    /* border: solid 3px var(--red); */
+}
+
+.content {
+    display: flex;
+    flex-flow: row nowrap;
+    
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: var(--darker);
+    /* border: solid 3px var(--gray); */
+}
+
+.text {
+    color: var(--perfectblue);
+    font-size: 1.5rem;
+}
+
+.content .text {
+    width: 100%;
+}
+
+.action {
+    display: flex;
+    /* border: solid 3px var(--red); */
+}
+
+.action button {
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: 0.4s;
+    margin: 0 --0.5rem;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    border-radius: 0.5rem;
+    border: solid 2px var(--dark);
+}
+
+.add {
+    background-color: var(--green);
+}
+
+.sub {
+    color: var(--white);
+    background-color: var(--red);
+}
+
+.delete {
+    color: var(--white);
+    background-color: var(--red);
+    width: max-content;
+}
+
+.action button:hover {
+    opacity: 0.6;
+}
+
+.action button:active {
+    opacity: 0.4;
+}
+
+input {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+}
