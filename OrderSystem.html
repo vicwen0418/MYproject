@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrderSystem</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3940/3940059.png">
+</head>
+<body>
+    <header>
+        <h1 id="title">Vic's Order System</h1>
+        <form id="new-order-form">
+            <input 
+                type="text",
+                id="new-order-name",
+                placeholder="餐點名稱">
+            <input 
+                type="text",
+                id="new-order-price",
+                placeholder="餐點單價">
+            <input 
+                type="submit",
+                id="new-order-submit",
+                value="新增">    
+        </form>
+    </header>
+
+    <main>
+        <section>
+            <div id="list-title">
+                <p>名稱</p>
+                <p>單價</p>
+                <p>數量</p>
+                <p>總價</p>
+            </div>
+            <div class="list">
+                <!-- <div class="content">
+                    <input 
+                    type="text",
+                    class="text",
+                    value="排骨便當",
+                    readonly>
+                    <input 
+                    type="text",
+                    class="text",
+                    value="250",
+                    readonly>
+                    <input 
+                    type="text",
+                    class="text",
+                    value="5",
+                    readonly>
+                    <input 
+                    type="text",
+                    class="text",
+                    value="1250",
+                    readonly>
+                    <div class="action">
+                        <button class="add">+1</button>
+                        <button class="sub">-1</button>
+                        <button class="delete">刪除</button>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
