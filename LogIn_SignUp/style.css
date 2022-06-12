@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600&display=swap');
+
+:root {
+    --gray: #6B7280;
+	--dark: #1e2125;
+	--darker: rgb(24, 22, 22);
+	--pink: #EC4899;
+	--purple: #8B5CF6;
+	--lightgreen: #64e5cd;
+	--perfectblue: rgb(81, 137, 206);
+    --red: red;
+    --white: #fff;
+    --green: rgb(72, 255, 0);
+    --darkpurple: rgb(145, 22, 132);
+}
+
+* {
+    box-sizing: border-box;
+	font-family: 'Noto Serif TC', "Fira sans", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
+    color: var(--white);
+    background-image: url("../background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45rem;
+    width: 95rem;
+    /* border: solid 2px var(--red); */
+}
+
+.container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    height: 35rem;
+    width: 30rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 1rem;
+    /* border: solid 2px var(--red); */
+    
+}
+
+.container h1 {
+    font-size: 4rem;
+    background: linear-gradient(to top, #ffaf7b, #d76d77, #3a1c71);
+    background: -webkit-linear-gradient(to top, #3a1c71, #d76d77, #ffaf7b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.container input {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    height: 3rem;
+    border: none;
+    opacity: 0.9;
+}
+
+.container .submit {
+    background-color: #3a1c71;
+    color: var(--white);
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    width: 23rem;
+    height: 4rem;
+    border-radius: 0.2rem;
+    border-style: none;
+    /* opacity: 0.9; */
+    
+}
+
+.container .submit:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    
+}
+
+.container a {
+    color: var(--perfectblue);
+    text-decoration:none;
+}
+
+.container a:hover {
+    cursor: pointer;
+    opacity: 0.6;
+} 
