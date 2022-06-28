@@ -1,13 +1,11 @@
-﻿Imports System
 Imports System.IO.Ports
-Imports System.Timers
 Public Class Form1
     Dim TxDATA(26) As Char
-    Dim ReadFlag As Boolean = False             '接收Flag 
-    Dim Buffer As String = ""
     Dim Input As String = ""
-
-
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        CurrentTimeBox.TextAlign = 2
+        Timer1.Enabled = True
+    End Sub
     Private Sub Form1_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         If SerialPort.IsOpen = False Then Call Enable(False)
 
@@ -78,6 +76,8 @@ Public Class Form1
         If SerialPort.IsOpen = True Then
             SerialPort.Close()
             DeviceStatus.BackColor = Color.FromArgb(255, 0, 0)
+            WriteTextBox.Text = ""
+            ReadTextBox.Text = ""
             Call Enable(False)
         End If
     End Sub
@@ -89,43 +89,40 @@ Public Class Form1
     End Sub
     Private Sub WriteButton_Click(sender As Object, e As EventArgs) Handles WriteButton.Click
         If SerialPort.IsOpen = True Then
-            If Len(WriteTextBox.Text) = 4 _
-                    And ((Mid(WriteTextBox.Text, 1, 1) >= "A" And Mid(WriteTextBox.Text, 1, 1) <= "F") _
-                    And (Mid(WriteTextBox.Text, 2, 1) >= "A" And Mid(WriteTextBox.Text, 2, 1) <= "F") _
-                    And (Mid(WriteTextBox.Text, 3, 1) >= "A" And Mid(WriteTextBox.Text, 3, 1) <= "F") _
-                    And (Mid(WriteTextBox.Text, 4, 1) >= "A" And Mid(WriteTextBox.Text, 4, 1) <= "F")) Then
+            For i = 1 To 4
+                If Len(WriteTextBox.Text) = 4 And ((Mid(WriteTextBox.Text, i, 1) >= "0" And Mid(WriteTextBox.Text, i, 1) <= "9") Or (Mid(WriteTextBox.Text, i, 1) >= "A" And Mid(WriteTextBox.Text, i, 1) <= "F")) Then
+                    TxDATA(7) = "1"                                      'Function ---  1 : Write   2 : Read
+                    TxDATA(7 + i) = Mid(WriteTextBox.Text, i, 1)
 
-                TxDATA(7) = "1"                                          'Function ---  1 : Write   2 : Read
-                TxDATA(8) = Mid(WriteTextBox.Text, 1, 1)
-                TxDATA(9) = Mid(WriteTextBox.Text, 2, 1)
-                TxDATA(10) = Mid(WriteTextBox.Text, 3, 1)
-                TxDATA(11) = Mid(WriteTextBox.Text, 4, 1)
-                SerialPort.Write(TxDATA)
-
-                ReadFlag = False
-            Else
-                MsgBox("Not 4 Bits Hex Format", vbOKOnly, "110")     'MsgBox "content" ,  "button" ,  "title"
-            End If
+                    If i = 4 Then
+                        SerialPort.Write(TxDATA)
+                    End If
+                Else
+                    MsgBox("Not 4 Bits Hex Format", vbOKOnly, "110")     'MsgBox "content" ,  "button" ,  "title"
+                End If
+            Next
         End If
     End Sub
-
-    Private Sub ReadTextBox_TextChanged(sender As Object, e As EventArgs) Handles ReadTextBox.TextChanged
+    Private Sub ReadButton_Click(sender As Object, e As EventArgs) Handles ReadButton.Click
         If SerialPort.IsOpen = True Then
             TxDATA(7) = "2"                                             'Function ---  1 : Write   2 : Read
             SerialPort.Write(TxDATA)
-            ReadFlag = True
         End If
     End Sub
     Private Sub RecieveDATA()
-        If SerialPort.IsOpen = True And ReadFlag = True Then
-            Do
-                Buffer = SerialPort.ReadLine()
-                If Buffer Is Nothing Then
-                    Exit Do
-                Else
-                    Input &= Buffer & vbCrLf
-                End If
-            Loop
+        If SerialPort.IsOpen = True Then
+            If SerialPort.BytesToRead > 0 Then
+                Dim buffer(21) As Byte
+                Dim i As Integer = 0
+                Do
+                    buffer(i) = SerialPort.ReadByte
+                    i = i + 1
+                Loop While i < 20
+                ReadTextBox.Text = Chr(buffer(3)) & Chr(buffer(4)) & Chr(buffer(5)) & Chr(buffer(6))
+            End If
         End If
+    End Sub
+    Private Sub ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox.SelectedIndexChanged
+        SerialPort.PortName = ComboBox.Text
     End Sub
 End Class
